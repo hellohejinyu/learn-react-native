@@ -15,23 +15,36 @@ import {
   ProgressBarAndroid,
   StyleSheet,
   View,
+  ScrollView,
+  RefreshControl,
   Modal,
   Picker
 } from 'react-native';
 
 
 const App = () => {
+  const [refreshing, setRefreshing] = useState(false)
+
   return (
-    <View style={styles.container}>
-      <ProgressBarAndroid />
-      <ProgressBarAndroid styleAttr="Horizontal" />
-      <ProgressBarAndroid styleAttr="Horizontal" color="#2196F3" />
-      <ProgressBarAndroid
-        styleAttr="Horizontal"
-        indeterminate={false}
-        progress={0.5}
-      />
-    </View>
+    <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            colors={['#f00', '#0f0', '#00f']}
+            progressBackgroundColor='#000'
+            onRefresh={() => {
+              console.log('true')
+              setRefreshing(true)
+              setTimeout(() => {
+                console.log('false')
+                setRefreshing(false)
+              }, 1000);
+            }}
+          />
+        }
+      >
+        <Text>xxx</Text>
+      </ScrollView>
   );
 };
 
