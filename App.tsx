@@ -11,28 +11,53 @@
 import React, { useCallback, useRef, useMemo, useState } from 'react';
 import {
   Button,
-  View,
-  FlatList,
   Text,
-  StyleSheet,
-  DrawerLayoutAndroid,
-  TouchableHighlight,
-  Platform,
-  Image
+  View,
+  Modal,
 } from 'react-native';
 
 
 const App = () => {
+  const [v, setV] = useState(false)
   return (
-    <Image
-      source={{uri:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=144388917,3393541021&fm=26&gp=0.jpg'}}
-      style={{ 
-        width: 160,
-        height: 90,
-        borderRadius: 15,
-        overlayColor: 'red'
-      }}
-    />
+    <View>
+      <Modal
+        animationType='slide'
+        visible={v}
+        transparent={true}
+        onDismiss={() => {
+          console.log('dismiss')
+        }}
+        onRequestClose={() => {
+          console.log('requestClose')
+          setV(false)
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, .6)',
+            padding: 16,
+            height: 300,
+            width: 200,
+            marginTop: 50
+          }}
+        >
+          <Text>Hello World</Text>
+          <Button
+            title='close'
+            onPress={() => {
+              setV(false)
+            }}
+          />
+        </View>
+      </Modal>
+      <Button
+        title='show'
+        onPress={() => {
+          setV(true)
+        }}
+      />
+    </View>
   );
 };
 
