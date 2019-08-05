@@ -14,7 +14,7 @@ import {
   ToolbarAndroid,
   View,
   Text,
-  TouchableHighlight
+  TouchableNativeFeedback
 } from 'react-native';
 
 
@@ -22,19 +22,13 @@ const App = () => {
   const [text, setText] = useState('')
   return (
     <View>
-      <TouchableHighlight
-        onHideUnderlay={() => {
-          console.log('hideUnderlay')
-        }}
-        onShowUnderlay={() => {
-          console.log('showUnderlay')
-        }}
-        underlayColor='#ccc'
+      <TouchableNativeFeedback
         onPress={() => {}}
-        activeOpacity={.1}
       >
-        <Text>TouchableHighlight</Text>
-      </TouchableHighlight>
+        <View style={{ height: 60 }}>
+          <Text>TouchableHighlight</Text>
+        </View>
+      </TouchableNativeFeedback>
     </View>
   );
 };
