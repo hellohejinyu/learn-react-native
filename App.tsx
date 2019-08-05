@@ -17,21 +17,23 @@ import {
   ScrollView,
   Switch,
   StatusBar,
-  SectionList
+  SectionList,
+  TextInput
 } from 'react-native';
 
 
 const App = () => {
-  const overrideRenderItem = ({ item, index, section: { title, data } }: any) => <Text key={index}>Override{item}</Text>
-
+  const [text, setText] = useState('')
   return (
     <>
-      <Text>I am bold</Text>
-      <Text>and red</Text>
-      <Text>
-        <Text>First part and </Text>
-        <Text>second part</Text>
-      </Text>
+      <TextInput
+        onChangeText={(text) => setText(text)}
+        value={text}
+        placeholder='holder'
+        onSubmitEditing={() => {
+          console.log('gogo')
+        }}
+      />
     </>
   );
 };
