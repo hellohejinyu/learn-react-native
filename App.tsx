@@ -12,36 +12,41 @@ import React, { Fragment, useCallback, useRef, useMemo, useState } from 'react';
 import {
   Button,
   Text,
-  ProgressBarAndroid,
   StyleSheet,
   View,
   ScrollView,
-  RefreshControl,
-  Modal,
-  Picker
+  StatusBar,
+  SectionList
 } from 'react-native';
 
 
 const App = () => {
-  const [refreshing, setRefreshing] = useState(false)
+  const overrideRenderItem = ({ item, index, section: { title, data } }: any) => <Text key={index}>Override{item}</Text>
 
   return (
-    <Fragment>
-      <ScrollView
-        endFillColor='#f00'
-      >
-        <View style={{ height: 1600 }}>
-          <View>
-            <Text>
-              hello worldhello worldhello world
-              hello worldhello worldhello world
-              hello worldhello worldhello world
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-      <Button title='nice' onPress={() => {}} />
-    </Fragment>
+    <>
+      <StatusBar translucent={true} backgroundColor="blue" barStyle="dark-content" />
+      <SectionList
+        renderItem={({item, index, section}) => <Text key={index}>{item}</Text>}
+        renderSectionHeader={({section: {title}}) => (
+          <Text style={{fontWeight: 'bold'}}>{title}</Text>
+        )}
+        sections={[
+          {title: 'Title1', data: ['item1', 'item2']},
+          {title: 'Title2', data: ['item3', 'item4']},
+          {title: 'Title3', data: ['item5', 'item6']},
+        ]}
+        keyExtractor={(item, index) => item + index}
+      />
+      <SectionList
+        renderItem={({ item, index, section }) => <Text key={index}>{item}</Text>}
+        sections={[
+          { title: 'Title1', data: ['item1', 'item2'], renderItem: overrideRenderItem },
+          { title: 'Title2', data: ['item3', 'item4'] },
+          { title: 'Title3', data: ['item5', 'item6'] },
+        ]}
+      />
+    </>
   );
 };
 
