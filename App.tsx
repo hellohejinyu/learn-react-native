@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, { useCallback, useRef, useMemo, useState } from 'react';
+import React, { Fragment, useCallback, useRef, useMemo, useState } from 'react';
 import {
   Button,
   Text,
@@ -26,25 +26,22 @@ const App = () => {
   const [refreshing, setRefreshing] = useState(false)
 
   return (
-    <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            colors={['#f00', '#0f0', '#00f']}
-            progressBackgroundColor='#000'
-            onRefresh={() => {
-              console.log('true')
-              setRefreshing(true)
-              setTimeout(() => {
-                console.log('false')
-                setRefreshing(false)
-              }, 1000);
-            }}
-          />
-        }
+    <Fragment>
+      <ScrollView
+        endFillColor='#f00'
       >
-        <Text>xxx</Text>
+        <View style={{ height: 1600 }}>
+          <View>
+            <Text>
+              hello worldhello worldhello world
+              hello worldhello worldhello world
+              hello worldhello worldhello world
+            </Text>
+          </View>
+        </View>
       </ScrollView>
+      <Button title='nice' onPress={() => {}} />
+    </Fragment>
   );
 };
 
