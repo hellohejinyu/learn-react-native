@@ -10,31 +10,29 @@
 
 import React, { Fragment, useCallback, useRef, useMemo, useState } from 'react';
 import {
-  Button,
-  Text,
   StyleSheet,
+  ToolbarAndroid,
   View,
-  ScrollView,
-  Switch,
-  StatusBar,
-  SectionList,
-  TextInput
+  Text
 } from 'react-native';
 
 
 const App = () => {
   const [text, setText] = useState('')
   return (
-    <>
-      <TextInput
-        onChangeText={(text) => setText(text)}
-        value={text}
-        placeholder='holder'
-        onSubmitEditing={() => {
-          console.log('gogo')
-        }}
+    <View>
+      <ToolbarAndroid
+        style={{ height: 56, backgroundColor: '#ccc' }}
+        title='什么情况'
+        logo={{ uri: 'https://www.baidu.com/favicon.ico' }}
+        actions={[
+          {
+            title: '测试一',
+            show: 'always'
+          }
+        ]}
       />
-    </>
+    </View>
   );
 };
 
