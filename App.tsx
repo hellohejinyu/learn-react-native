@@ -13,7 +13,8 @@ import {
   StyleSheet,
   ToolbarAndroid,
   View,
-  Text
+  Text,
+  TouchableHighlight
 } from 'react-native';
 
 
@@ -21,17 +22,19 @@ const App = () => {
   const [text, setText] = useState('')
   return (
     <View>
-      <ToolbarAndroid
-        style={{ height: 56, backgroundColor: '#ccc' }}
-        title='什么情况'
-        logo={{ uri: 'https://www.baidu.com/favicon.ico' }}
-        actions={[
-          {
-            title: '测试一',
-            show: 'always'
-          }
-        ]}
-      />
+      <TouchableHighlight
+        onHideUnderlay={() => {
+          console.log('hideUnderlay')
+        }}
+        onShowUnderlay={() => {
+          console.log('showUnderlay')
+        }}
+        underlayColor='#ccc'
+        onPress={() => {}}
+        activeOpacity={.1}
+      >
+        <Text>TouchableHighlight</Text>
+      </TouchableHighlight>
     </View>
   );
 };
